@@ -24,6 +24,7 @@ if(CV_BRIDGE_DISABLE_PYTHON)
 else()
   find_package(Python3 REQUIRED COMPONENTS Development NumPy)
   find_package(Boost QUIET)
+  # find_package(Boost REQUIRED python310)
   if(Boost_VERSION_STRING VERSION_LESS "1.67")
     # This is a bit of a hack to suppress a warning
     #   No header defined for python3; skipping header check
@@ -34,8 +35,12 @@ else()
     find_package(Boost REQUIRED COMPONENTS python3)
     set(boost_python_target "Boost::python3")
   else()
-    find_package(Boost REQUIRED COMPONENTS python${Python3_VERSION_MAJOR}${Python3_VERSION_MINOR})
-    set(boost_python_target "Boost::python${Python3_VERSION_MAJOR}${Python3_VERSION_MINOR}")
+    find_package(Boost REQUIRED COMPONENTS python${Python3_VERSION_MAJOR})
+    set(boost_python_target "Boost::python${Python3_VERSION_MAJOR}") # Throws Could not find a package configuration file provided by "boost_python310"
+    message(STATUS "Evaluated Boost Python Component: Boost::${boost_python_component}")
+
+    # set(boost_python_target "Boost::python${Python3_VERSION_MAJOR}") # Solution suggested in https://gitlab.com/inkscape/lib2geom/-/issues/44
+    # set(boost_python_target "Boost::python3") # Solution suggested in https://gitlab.com/inkscape/lib2geom/-/issues/44
   endif()
 endif()
 
