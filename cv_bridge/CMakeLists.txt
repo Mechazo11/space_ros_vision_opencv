@@ -35,12 +35,10 @@ else()
     find_package(Boost REQUIRED COMPONENTS python3)
     set(boost_python_target "Boost::python3")
   else()
+    # Solution suggested in https://gitlab.com/inkscape/lib2geom/-/issues/44
     find_package(Boost REQUIRED COMPONENTS python${Python3_VERSION_MAJOR})
     set(boost_python_target "Boost::python${Python3_VERSION_MAJOR}") # Throws Could not find a package configuration file provided by "boost_python310"
     message(STATUS "Evaluated Boost Python Component: Boost::${boost_python_component}")
-
-    # set(boost_python_target "Boost::python${Python3_VERSION_MAJOR}") # Solution suggested in https://gitlab.com/inkscape/lib2geom/-/issues/44
-    # set(boost_python_target "Boost::python3") # Solution suggested in https://gitlab.com/inkscape/lib2geom/-/issues/44
   endif()
 endif()
 
