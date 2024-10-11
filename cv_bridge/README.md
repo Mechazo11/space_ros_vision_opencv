@@ -1,6 +1,18 @@
 cv_bridge
 ==========
 
+## Compatibility notice
+
+09/10/24: This particular fork sovles the following issues in Ubuntu 22.04 using the workaround suggested here: # Solution suggested in https://gitlab.com/inkscape/lib2geom/-/issues/44
+
+```bash
+Could not find a package configuration file provided by "boost_python310"
+  (requested version 1.74.0) with any of the following names:
+
+    boost_python310Config.cmake
+    boost_python310-config.cmake
+```
+
 # Introduction
 
 cv_bridge converts between ROS 2 image messages and OpenCV image representation for perception applications. As follows:
